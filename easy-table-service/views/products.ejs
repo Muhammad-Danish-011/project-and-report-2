@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+                <li><a href="/products">Products</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Categories</a>
+                    <div class="dropdown-content">
+                        <a href="/products/dishes">Dishes</a>
+                        <a href="/products/seafood">Seafood</a>
+                        <a href="/products/meals">Meals</a>
+                        <a href="/products/vegetarian">Vegetarian</a>
+                    </div>
+                </li>
+                <li><a href="/basket">Basket</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <h1><%= title %></h1>
+        <div class="product-list">
+            <% products.forEach(function(product) { %>
+                <div class="product">
+                    <img class="img" src="<%= product.image %>" alt="<%= product.name %>">
+                    <h3><%= product.name %></h3>
+                    <p><%= product.description %></p>
+                    <p>€<%= product.price.toFixed(2) %></p>
+                    <form action="/add-to-basket" method="POST">
+                        <input type="hidden" name="id" value="<%= product.id %>">
+                        <button type="submit">Add to Basket</button>
+                    </form>
+                    
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Easy Table Service</p>
+    </footer>
+</body>
+</html>

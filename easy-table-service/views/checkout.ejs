@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1 >Checkout</h1>
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/basket">Basket (<span id="basket-count"><%= basket.length %></span>)</a>
+        </nav>
+    </header>
+    <main>
+        <h2 class="heading">Your Basket</h2>
+        <ul>
+            <% basket.forEach(item => { %>
+               
+                    <img  src="<%= item.image %>" alt="<%= item.name %>" class="img">
+                    <div class="basket-item-details">
+                        <span class="heading"><%= item.name %></span> 
+                        <span class="heading">- $<%= item.price %></span>  
+                        <span class="heading">x<%= item.quantity %></span>
+                    </div>
+                
+            <% }) %>
+        </ul>
+        <form action="/checkout" method="POST">
+            <button class="button" type="submit">Confirm For CheckOut</button>
+        </form>
+    </main>
+    <footer>
+        &copy; 2024  Easy Table Service
+    </footer>
+</body>
+</html>
